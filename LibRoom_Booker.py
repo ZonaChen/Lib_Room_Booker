@@ -1,4 +1,4 @@
-import requests
+﻿import requests
 import random
 import datetime
 import time
@@ -10,7 +10,7 @@ current_hourseId=5
 run_flag=0
 while 1:
     if run_flag==0:
-        sleep(1);
+        sleep(1)
         if (datetime.datetime.now().hour==20 and datetime.datetime.now().minute==58):
             run_flag=1
     else:
