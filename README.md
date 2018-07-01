@@ -1,1 +1,1 @@
-A python script to auto book the rooms in the Library of ECNU.
+A python script to auto book rooms in the Library of ECNU.
