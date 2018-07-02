@@ -11,7 +11,8 @@ def getURL(houseId,current_hourseId,date,strStartTime,strEndTime,startTime,endTi
     else:
         p1='3674969'
         p2='1530545902099'
-    return 'dev_id=' + str(houseId[current_hourseId][1]) + \
+    return  'http://202.120.82.2:8081/ClientWeb/pro/ajax/reserve.aspx?'+\
+            'dev_id=' + str(houseId[current_hourseId][1]) + \
             '&lab_id=' + '3674920' + \
             '&kind_id=' + p1 + \
             '&room_id=&type=dev&prop=&test_id=&term=&test_name=' \
