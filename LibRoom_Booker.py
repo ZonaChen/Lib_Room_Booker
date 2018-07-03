@@ -23,10 +23,10 @@ def getURL(houseId,current_hourseId,date,strStartTime,strEndTime,startTime,endTi
             '&up_file=&memo=&act=set_resv&_='+p2
 
 
-startTime="1800"
+startTime="2000"
 endTime="2200"
 #currcurrent_hourseId=5
-run_flag=0
+run_flag=1
 #house data
 houseId=[
     [000,0000000],
@@ -90,28 +90,25 @@ while 1:
                     break
                 else:
                     print(str(houseId[i][0])+"已经被预订")
-                time.sleep(0.3)
 
             if (data['msg'][0:1] != '2'):
                 print(startTime)
                 print(endTime)
                 print("预订成功")
 
-            ini = int((startTime[0]) + (startTime[1]))
-            endTime = str(ini) + "00"
+            ini = int((startTime[0]) + (startTime[1])) if len(startTime) == 4 else int(startTime[0])
+            endTime = str(ini - 1) + "50"
             ini -= 4
-            if ini == 8:
-                startTime = "0810"
-            elif ini < 8:
+            if ini < 8:
                 exit(0)
             else:
                 startTime = str(ini) + "10"
+
+            strStartTime = startTime[0:2] + '%3A' + startTime[2:4] if len(startTime) == 4 else '0' + startTime[0:1] + '%3A' + startTime[1:3]
+            strEndTime = endTime[0:2] + '%3A' + endTime[2:4] if len(endTime) == 4 else '0' + endTime[0:1] + '%3A' + endTime[1:3]
             print("尝试下一次预订")
             print(startTime)
             print(endTime)
 
-
-            # else:
-            #     current_hourseId = int(random.uniform(1,9.99))  # 今天需要去抢哪一间房
-        # http://202.120.82.2:8081/ClientWeb/pro/ajax/reserve.aspx?dev_id=3676515&lab_id=3674920&kind_id=3675133&room_id=&type=dev&prop=&test_id=&term=&test_name=&start=2018-07-03+08%3A10&end=2018-07-03+08%3A40&start_time=810&end_time=840&up_file=&memo=&act=set_resv&_=1530546115012
-        # http://202.120.82.2:8081/ClientWeb/pro/ajax/reserve.aspx?dev_id=3676645&lab_id=3674920&kind_id=3674969&room_id=&type=dev&prop=&test_id=&term=&test_name=&start=2018-07-04+08%3A00&end=2018-07-04+09%3A00&start_time=800&end_time=900&up_file=&memo=&act=set_resv&_=1530545902099
+# http://202.120.82.2:8081/ClientWeb/pro/ajax/reserve.aspx?dev_id=3676515&lab_id=3674920&kind_id=3675133&room_id=&type=dev&prop=&test_id=&term=&test_name=&start=2018-07-03+08%3A10&end=2018-07-03+08%3A40&start_time=810&end_time=840&up_file=&memo=&act=set_resv&_=1530546115012
+# http://202.120.82.2:8081/ClientWeb/pro/ajax/reserve.aspx?dev_id=3676645&lab_id=3674920&kind_id=3674969&room_id=&type=dev&prop=&test_id=&term=&test_name=&start=2018-07-04+08%3A00&end=2018-07-04+09%3A00&start_time=800&end_time=900&up_file=&memo=&act=set_resv&_=1530545902099
